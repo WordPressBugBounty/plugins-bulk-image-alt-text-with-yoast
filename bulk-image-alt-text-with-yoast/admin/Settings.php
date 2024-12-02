@@ -22,6 +22,8 @@ class Settings {
         add_action( 'wp_ajax_bialty_options', array( &$settings, 'save_options' ) );
         add_action( 'wp_ajax_bialty_onboarding', array( &$settings, 'onboarding' ) );
 
+        add_action('wp_ajax_bialty_search_posts', array( &$settings, 'search_posts_callback' ) );
+
         // Add metabox to post-types
         add_action( 'add_meta_boxes', array(&$metabox, 'add_metabox') );
 

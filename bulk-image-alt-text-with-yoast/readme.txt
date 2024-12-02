@@ -2,10 +2,10 @@
 Contributors: the-rock, pagup, freemius
 Tags: Alt Text, Alt Attribute, Alt tag, Google images, SEO
 Requires at least: 4.1
-Requires PHP: 5.6
-Tested up to: 6.6
+Requires PHP: 7.4
+Tested up to: 6.7
 WC tested up to: 8.5
-Stable tag: 2.0.2
+Stable tag: 2.1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -305,3 +305,9 @@ Optimizing your images for SEO helps crawlers better index your web pages, which
 * 🐛 FIX: Post types option issue with free version.
 * 🐛 FIX: @$dom->loadHTML issue if content are returning empty string
 * 👌 IMPROVE: Updated freemius to v2.7.3
+
+= 2.1.0 =
+* 🔥 NEW: Support for All in One SEO (AIOSEO)
+* 🔥 NEW: Support for WooCommerce Related Products with Post title as Alt Tag
+* 👌 IMPROVE: Loading Blacklist posts via ajax search
+* 👌 IMPROVE: Updated freemius to v2.9.0

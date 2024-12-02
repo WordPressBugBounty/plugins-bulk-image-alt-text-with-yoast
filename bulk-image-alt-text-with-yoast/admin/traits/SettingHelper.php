@@ -81,7 +81,16 @@ trait SettingHelper
      * @return string
      */
     public function post_type( $post_id ) {
-        $post_type_obj = get_post_type_object( get_post_type( $post_id ) );
+        $post_type = get_post_type( $post_id );
+        if ( !$post_type ) {
+            error_log( "Post type not found for post ID: " . $post_id );
+            return '';
+        }
+        $post_type_obj = get_post_type_object( $post_type );
+        if ( !$post_type_obj || !isset( $post_type_obj->labels ) || !isset( $post_type_obj->labels->singular_name ) ) {
+            error_log( "Invalid post type object structure for post type: " . $post_type );
+            return '';
+        }
         return $post_type_obj->labels->singular_name;
     }
 
