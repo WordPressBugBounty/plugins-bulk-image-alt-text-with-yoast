@@ -37,17 +37,8 @@ class SettingsController {
             ];
         }, $blacklisted_posts );
         // var_dump($options);
-        $allowed_post_types = ( Option::check( 'post_types' ) ? Option::get( 'post_types' ) : [] );
-        $posts = $this->get_items( get_posts( array(
-            'post_type'   => $allowed_post_types,
-            'orderby'     => 'title',
-            'order'       => 'ASC',
-            'fields'      => 'ids',
-            'numberposts' => -1,
-        ) ), true );
         wp_localize_script( 'bialty__main', 'data', array(
             'post_types'       => $post_types,
-            'posts'            => $posts,
             'options'          => $options,
             'blacklistedPosts' => $formatted_blacklist,
             'onboarding'       => get_option( 'bialty_tour' ),
