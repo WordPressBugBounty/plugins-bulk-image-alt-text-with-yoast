@@ -163,6 +163,34 @@ class DomController {
         }
     }
 
+    /**
+     * Register a custom filter to apply Bialty alt text functionality
+     * 
+     * @param string $filter_name The name of the filter to hook into
+     * @param int $priority Priority of the filter (default: 99999)
+     * @return void
+     */
+    public function register_custom_filter( $filter_name, $priority = 99999 ) {
+        // Add the filter using the main bialty method
+        add_filter( $filter_name, array($this, 'bialty'), $priority );
+    }
+
+    /**
+     * Register multiple custom filters at once
+     * 
+     * @param array $filters Array of filter names or arrays with [name, priority]
+     * @return void
+     */
+    public function register_custom_filters( $filters ) {
+        foreach ( $filters as $filter ) {
+            if ( is_array( $filter ) ) {
+                $this->register_custom_filter( $filter[0], $filter[1] ?? 99999 );
+            } else {
+                $this->register_custom_filter( $filter );
+            }
+        }
+    }
+
 }
 
 $DomController = new DomController();
