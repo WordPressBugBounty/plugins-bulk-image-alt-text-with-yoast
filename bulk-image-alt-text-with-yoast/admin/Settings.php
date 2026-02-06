@@ -1,11 +1,11 @@
 <?php
 namespace Pagup\Bialty;
-use Pagup\Bialty\Core\Asset;
-use Pagup\Bialty\Controllers\DomController;
-use Pagup\Bialty\Controllers\NoticeController;
-use Pagup\Bialty\Controllers\MetaboxController;
-use Pagup\Bialty\Controllers\OptionsController;
-use Pagup\Bialty\Controllers\SettingsController;
+use \Pagup\Bialty\Core\Asset;
+use \Pagup\Bialty\Controllers\DomController;
+use \Pagup\Bialty\Controllers\NoticeController;
+use \Pagup\Bialty\Controllers\MetaboxController;
+use \Pagup\Bialty\Controllers\OptionsController;
+use \Pagup\Bialty\Controllers\SettingsController;
 
 //require \Pagup\Bialty\Core\Plugin::path('vendor/persist-admin-notices-dismissal/persist-admin-notices-dismissal.php');
 

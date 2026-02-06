@@ -14,7 +14,7 @@
 
     <p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="bialty_text"><?php echo  esc_html__( 'Insert your custom Alt text (other than Yoast Focus Keyword + Page title)', "bulk-image-alt-text-with-yoast" ) ;?></label></p>
 
-    <input type="text" name="bialty_cs_alt" value="<?php if ( !empty($bialty_cs_alt) ) echo $bialty_cs_alt; ?>">
+    <input type="text" name="bialty_cs_alt" value="<?php if ( !empty($bialty_cs_alt) ) echo esc_attr($bialty_cs_alt); ?>">
 
     <p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="bialty_text"><?php echo  esc_html__( 'Disable Bialty?', "bulk-image-alt-text-with-yoast" ); ?></label></p>
 

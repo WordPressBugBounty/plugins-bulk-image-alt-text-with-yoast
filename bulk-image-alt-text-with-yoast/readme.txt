@@ -3,9 +3,9 @@ Contributors: the-rock, pagup, freemius
 Tags: Alt Text, Alt Attribute, Alt tag, Google images, SEO
 Requires at least: 4.1
 Requires PHP: 7.4
-Tested up to: 6.7
+Tested up to: 6.9
 WC tested up to: 8.5
-Stable tag: 2.2.0
+Stable tag: 2.2.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -370,3 +370,11 @@ If your images aren't updating, verify that you've selected the correct post typ
 = 2.2.0 =
 * 👌 IMPROVE: Frequently Asked Question (FAQ)
 * 🐛 FIX: Security issue
+
+= 2.2.1 = 
+* 🐛 FIX: PHP namespace resolution issue causing problems on specific servers
+* 👌 IMPROVE: Updated Freemius SDK to v2.12.0
+
+= 2.2.2 = 
+* 🐛 FIX: Security issue
+* 👌 IMPROVE: Updated Freemius SDK to v2.13.0

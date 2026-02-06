@@ -141,7 +141,7 @@ class SettingsController {
             // Prepare the query parameters
             $query_params = array_merge( ['%' . $wpdb->esc_like( $query ) . '%'], $allowed_post_types );
             // Build and execute the query
-            $sql = $wpdb->prepare( "SELECT ID, post_title \r\n                FROM {$wpdb->posts} \r\n                WHERE post_title LIKE %s \r\n                AND post_type IN ({$placeholders_string})\r\n                AND post_status = 'publish'\r\n                LIMIT 20", $query_params );
+            $sql = $wpdb->prepare( "SELECT ID, post_title \n                FROM {$wpdb->posts} \n                WHERE post_title LIKE %s \n                AND post_type IN ({$placeholders_string})\n                AND post_status = 'publish'\n                LIMIT 20", $query_params );
             $results = $wpdb->get_results( $sql );
             if ( is_wp_error( $results ) ) {
                 wp_send_json_error( $results->get_error_message(), 500 );

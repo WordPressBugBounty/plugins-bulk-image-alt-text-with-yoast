@@ -1,6 +1,6 @@
 <?php
 namespace Pagup\Bialty\Core;
-use Pagup\Bialty\Core\Plugin;
+use \Pagup\Bialty\Core\Plugin;
 
 class Asset 
 {

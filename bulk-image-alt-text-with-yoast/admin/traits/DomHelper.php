@@ -1,7 +1,7 @@
 <?php
 namespace Pagup\Bialty\Traits;
 
-use Pagup\Bialty\Core\Option;
+use \Pagup\Bialty\Core\Option;
 
 trait DomHelper {
 
