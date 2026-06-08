@@ -3,360 +3,406 @@ Contributors: the-rock, pagup, freemius
 Tags: Alt Text, Alt Attribute, Alt tag, Google images, SEO
 Requires at least: 4.1
 Requires PHP: 7.4
-Tested up to: 6.9
+Tested up to: 7.0
 WC tested up to: 8.5
-Stable tag: 2.2.2
+Stable tag: 2.2.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Auto optimize all image alt text (+ Woocommerce ), per page & product, from Yoast SEO / Rank Math optimization settings (keywords).
+Automatic alt text for WordPress and WooCommerce. Dynamic, reversible, and based on your existing SEO context from Yoast, Rank Math, or AIOSEO.
 
 == Description ==
 
-Bialty automatically adds ALT TEXTs to your images from page/article/product titles (with Woocommerce for online shops) or Yoast's Focus Keywords, either separately or combined (depending on your needs). BIALTY also allows, through a Post META Box, manual customization on your pages, using ALT TEXTs different from those used with Yoast or Rank Math or page titles.
+**Bialty** is a WordPress alt text automation plugin.
 
-BIALTY operates in automatic mode. Once installed, it will be active on all pages of your site, both retroactively and for future content. You no longer need to worry about your Alt Texts.
+Bialty adds alt text to images dynamically in the **rendered frontend HTML**. It does **not** rewrite the Media Library. It uses SEO and editorial context already present in WordPress, such as focus keywords, post titles, product titles, or cleaned image filenames.
 
-**It's also compatible with:** TinyMCE, Page Builder by SiteOrigin, Elementor Page Builder, Gutenberg and more…
+Bialty is designed for site owners who want broad alt text coverage without destructive database changes, bulk rewrites, or external AI APIs.
 
-**About the PRO feature:**
+👉 **Official documentation and product site:** [bialty.com](https://bialty.com/)
 
-- Add Post Title or Image Name as Alt Attribute
-- Add alt tag to Woocommerce product pages
-- Add website title as Alt tag
-- Select pages to "blacklist"
-- And more premium features
+= Quick product facts =
 
-**SUPPORTED IN 6 LANGUAGES**
+- **Product type:** WordPress alt text automation plugin
+- **How it works:** injects alt text at render time in frontend HTML
+- **What it does not do:** does not rewrite Media Library metadata
+- **Rule sources:** focus keyword, title, image filename, combined modes, manual override
+- **SEO plugin support:** Yoast SEO, Rank Math, All in One SEO
+- **WooCommerce support:** available in Pro
+- **AI image analysis:** not included
+- **External API calls:** none
+- **Reversible:** yes, instantly
 
-BIALTY plugins are translated and available in: English, French – Français, Russian –Руссɤɢɣ, Portuguese – Português, Spanish – Español, German – Deutsch
+= What Bialty does =
 
-**Why should you optimize your image Alt Texts? Because more than 20% of search queries are made on Google Images.** Check [here](https://sparktoro.com/blog/new-jumpshot-2018-data-where-searches-happen-on-the-web-google-amazon-facebook-beyond/)
+Bialty applies a deterministic rule to images when a page is rendered.
 
-**Alternate text** (Alt text) is a text description that can be added to an image's HTML tag on a web page. It is used when the image on the web page cannot be displayed, in which case the Alt text is shown instead. It is also displayed when a user hovers over the image.
+Depending on your settings and plan, Bialty can use:
 
-Unfortunately, the ALT attribute is a critical step that is often overlooked.
+- Focus keyword from Yoast SEO
+- Focus keyword from Rank Math
+- Primary keyphrase from All in One SEO (AIOSEO)
+- Post title
+- Product title
+- Cleaned image filename
+- Combined values such as keyword + title
+- Custom manual alt text set per post, page, or product
 
-Have you ever found yourself in a situation where you have hundreds or thousands of images on your website without any alt tags? You know by definition that it will negatively impact your Google ranking in some way, especially when YOAST SEO keeps reminding you that "All the images on this page do not contain ALT attributes with the focus keyword". This can be a missed opportunity for better rankings on search engines.
+Bialty is useful for:
 
-Of course, you could add these alt tags manually (and spend dozens of hours doing it) or use other WordPress plugins that auto-add the product/page/post title or image name/title as ALT texts (with "\_" which are not SEO-friendly, by the way), but they still won't be the best ALT attributes to be added to your images and Yoast will keep displaying this orange/red spot reminding you that you HAVE NOT DONE the job as you should. And for good reason, because Alt tags strengthen the message of your articles with search engine spiders (which cannot determine the content of images and must rely on Alt text to determine their contents) and improves the accessibility of your website.
+- adding alt text where none exists
+- replacing existing alt text according to a defined rule
+- standardizing alt text logic across a site
+- covering WordPress posts and pages
+- extending the same logic to WooCommerce and custom post types in Pro
 
-**BIALTY is a time-saver** because it uses this "Focus Keyword" determined (by you) when optimizing your page/post/product with YOAST SEO (and optionally the page title) as ALT texts for all images contained on this page/post/product. Once your keyword is added in the "Focus keyword" field, after saving your settings, it will add it automatically to the image's HTML tags of your page. Simple & efficient…
+= What Bialty does not do =
 
-For your information, Google's article about images has a heading "Create great alt text". This is no coincidence because Google places a relatively high value on alt text to determine not only what is in the image but also the topic of the surrounding text.
+Bialty does **not** do the following:
 
-(https://support.google.com/webmasters/answer/114016?hl=en)
+- it does **not** rewrite Media Library metadata
+- it does **not** permanently write generated alt text into the database
+- it does **not** visually analyze images
+- it does **not** call any external AI API
+- it does **not** generate unique descriptive captions for each image based on computer vision
+- it does **not** process headers, footers, sidebars, or widget images by default
 
-How to use it?
+This distinction matters: Bialty is a **contextual rule engine**, not an AI vision plugin and not a bulk Media Library rewriting plugin.
 
-Once you've installed BIALTY on your website, you can choose between two options: "Only YOAST Focus Keyword" or "YOAST Focus Keyword + Page/post/product title". After saving your choice, BIALTY will automatically add ALT Texts to all images on every page, based on your selected optimization. After that, you can simply let it do its work.
+= Why Bialty is different =
 
-**What are the recommended practices?**
+Most image alt text plugins follow one of two models:
 
-It's advisable to keep the text (keyword) short to maximize its effectiveness. Shorter alt texts, and thus keywords, are more likely to be efficiently indexed by Google and other major online search engines. For more information, please refer to our FAQ.
+1. **Bulk rewrite model**  
+   They rewrite alt text inside the Media Library or database.
 
-**What is the role of alt tags?**
+2. **AI vision model**  
+   They send images to an external API and generate descriptive text from image analysis.
 
-Search engines and other web crawlers cannot understand images. However, images can significantly influence how people interpret a specific web page. Alt texts address this issue by providing text that can be read by search engines.
+Bialty follows a third model:
 
-When a Google bot or another search engine crawler examines a page, images with properly formatted alt text contribute to the indexing of the page and its ranking on the Search Engine Results Page (SERP).
+3. **Dynamic contextual injection model**  
+   It injects alt text into frontend HTML at render time using rules and signals already available in WordPress.
 
-**Alt text or Alt tag?**
+This gives Bialty a distinct profile:
 
-The term that might immediately come to mind when thinking about image alt text is "alt tag". However, "alt tag" is a misnomer and doesn't actually exist. The correct term is alt text, or alternative text, which is the alternate text attribute of the image tag.
+- **Dynamic frontend injection** — alt text is added to rendered HTML
+- **No Media Library rewrite** — stored metadata remains unchanged
+- **Instant reversibility** — disable the plugin and the injected alt text disappears
+- **No external API** — no quota, no per-image cost, no API dependency
+- **Deterministic behavior** — same rule, same output
 
-This can lead to confusion in SEO communication, as most people are familiar with the term "alt tag", even though it's technically incorrect.
+= SEO plugin compatibility =
 
-Alternative text (or Alt text) is primarily used by screen readers for the visually impaired to understand what an image is about. It allows you to provide an image description that is read out by an audio prompter, informing visually impaired users about the content on the page as they navigate through it.
+Bialty reads keyword data from the SEO plugin already active on the site.
 
-According to the W3C Accessibility Guidelines, it's important to include both image alt text and image title text in the image for important images on the page to ensure that the code is W3C-valid.
+Supported integrations:
 
-**Why is Alt Text Important?**
+- **Yoast SEO** — reads the focus keyword field
+- **Rank Math** — reads the focus keyword field
+- **All in One SEO (AIOSEO)** — reads the primary keyphrase
 
-[Google's article](https://support.google.com/webmasters/answer/114016?hl=en) about images includes a section titled "Use descriptive alt text". This isn't a coincidence, as Google places a high value on alt text to determine not only the content of the image but also its relation to the surrounding text.
+If no supported SEO plugin is active, Bialty can still use titles or image filenames as the alt text source.
 
-Using alt text (or the Alt attribute) on your images can improve user experience and potentially provide SEO benefits. Along with implementing best practices for image title and file naming, including the alt attribute can also contribute to image SEO.
+= Free edition =
 
-Currently, Google's search engine results pages (SERPs) provide as many image results as text-based results. Therefore, one of the key benefits of image alt text is that it can turn your images into hyperlinked search results, providing another avenue for your website to attract organic visitors.
+The free edition covers the core WordPress use case.
 
-Despite significant improvements in search engine image recognition technology over the years, search crawlers still can't "see" the images on a website page in the way humans can. Therefore, it's not advisable to leave the interpretation entirely up to them. If they don't understand, or get it wrong, you could potentially rank for unintended keywords or miss out on ranking altogether.
+Included in Free:
 
-**About Google's Image Recommendations?**
+- Posts
+- Pages
+- Missing alt text rule
+- Existing alt text rule
+- Manual override per post or page
+- Disable on homepage
+- Debug mode
+- Delete settings on deactivation
 
-To enhance the visibility of your content in Google Images, prioritize the user by offering an excellent user experience: design pages primarily for users, not for search engines. Here are some suggestions:
+Free is intended for standard content sites that want dynamic alt text on posts and pages.
 
-- Ensure good context: Ensure that your visual content is pertinent to the page's topic. We recommend displaying images only where they contribute unique value to the page. We strongly advise against pages where neither the images nor the text are original content.
-- Optimize positioning: When feasible, place images near relevant text. If it makes sense, consider positioning the most important image near the top of the page.
-- Avoid embedding crucial text within images: Refrain from embedding text in images, particularly important text elements like page headings and menu items, because not all users can access them (and page translation tools won't work on images). To ensure maximum accessibility of your content, keep text in HTML and provide alt text for images.
-- Develop informative and high-quality sites: Good content on your webpage is just as crucial as visual content for Google Images - it provides context and makes the result more actionable. Page content may be used to generate a text snippet for the image, and Google considers the quality of the page content when ranking images.
-- Develop device-friendly sites: Users search on Google Images more from mobile than on desktop. For this reason, it's important that you design your site to accommodate all device types and sizes. Use the mobile-friendly testing tool to assess how well your pages work on mobile devices, and receive feedback on what needs to be fixed.
-- Develop a good URL structure for your images: Google uses the URL path as well as the file name to help it understand your images. Consider organizing your image content so that URLs are constructed logically.
+= Commercial edition (Pro) =
+
+The commercial edition extends Bialty to larger and more complex WordPress stacks.
+
+Included in Pro:
+
+- **Custom post types**
+- **WooCommerce support**
+- **Product page coverage**
+- **Product gallery controls**
+- **Related products coverage**
+- **Blacklist / exclusion rules**
+- **Add Site Title**
+- **Broader rule combinations**
+- **Product-level manual override**
+
+Pro is intended for stores, agencies, and sites using WooCommerce or custom content models.
+
+👉 [Compare Free vs Pro](https://bialty.com/pricing)  
+👉 [WooCommerce documentation](https://bialty.com/woocommerce)
+
+= 7-day paid trial =
+
+Bialty Pro offers a **7-day paid trial**.
+
+Important:
+
+- the trial is **not free**
+- payment is required at checkout
+- the trial gives access to the commercial scope so the plugin can be tested on a real site, theme, builder, and WooCommerce stack
+
+This is useful when compatibility must be validated on a production-like environment.
+
+= Builder and editor compatibility =
+
+Bialty works when content is rendered through the standard WordPress frontend pipeline.
+
+Documented compatible editors and builders include:
+
+- Gutenberg
+- Classic Editor / TinyMCE
+- Elementor
+- SiteOrigin Page Builder
+
+Important technical note:
+
+Bialty relies on WordPress rendering filters such as `the_content`, `post_thumbnail_html`, and WooCommerce-specific frontend hooks. If a theme, builder, widget, or template bypasses the standard frontend flow, Bialty may not affect those images.
+
+Known special case:
+
+- **Beaver Builder edit mode** — Bialty is disabled in builder edit mode to avoid conflicts
+
+Outside the default scope:
+
+- header images
+- footer images
+- sidebar images
+- widget images
+- any image output that bypasses the supported frontend rendering flow
+
+👉 [Compatibility details](https://bialty.com/compatibility)
+
+= How to verify Bialty is working =
+
+Bialty changes the **rendered frontend HTML**.
+
+It does **not** change the Media Library field.
+
+To verify Bialty correctly:
+
+1. Open the published page in a browser
+2. Do not rely on the editor view
+3. Clear all cache layers if caching is active
+4. Inspect the `<img>` element in the rendered page
+5. Check the `alt` attribute
+
+If the `alt` attribute matches the configured rule, Bialty is working.
+
+If the Media Library still shows an empty or unchanged alt field, that is normal. Bialty does not write generated values back to stored metadata.
+
+👉 [Full troubleshooting guide](https://bialty.com/troubleshooting)
+
+= Performance profile =
+
+Bialty is designed to stay lightweight.
+
+It does not:
+
+- run a bulk background process
+- queue database rewrite jobs
+- call external APIs
+- add per-image API latency
+
+Instead, Bialty processes the rendered page at request time using local WordPress context. Actual impact depends on theme, builder, caching, and page complexity.
+
+= Accessibility and editorial note =
+
+Bialty helps automate **alt text coverage and consistency**.
+
+However, context-specific manual alt text may still be preferable when highly descriptive, accessibility-focused, or editorially precise alt text is required for a particular image.
+
+Bialty is best understood as a scalable rule-based automation layer, not as a replacement for manual judgment in every image context.
+
+= Languages =
+
+Bialty is translated into 6 languages:
+
+- English
+- French
+- Spanish
+- Portuguese
+- German
+- Russian
+
+= Links =
+
+- [Official site and documentation](https://bialty.com/)
+- [Features](https://bialty.com/features)
+- [How it works](https://bialty.com/how-it-works)
+- [WooCommerce support](https://bialty.com/woocommerce)
+- [Compatibility](https://bialty.com/compatibility)
+- [Pricing and plans](https://bialty.com/pricing)
+- [FAQ](https://bialty.com/faq)
+- [Troubleshooting](https://bialty.com/troubleshooting)
+- [Blog](https://bialty.com/blog/)
+
+= About the publisher =
+
+BIALTY is developed by [Pagup](https://pagup.com/), a digital readability firm based in Quebec, Canada.
+
+Alt text is not just an accessibility requirement. It is a semantic signal that helps search engines and AI systems understand what your images represent and how they relate to your content. Missing or generic alt texts create interpretive gaps — the system sees an image but cannot determine its role, its subject, or its relationship to the page.
+
+BIALTY automates alt text management so that your visual content contributes to your site's overall [digital readability](https://pagup.com/en/glossary/digital-readability/) instead of creating silent blind spots.
+
+= Part of the Pagup ecosystem =
+
+* [pagup.com](https://pagup.com/) — Digital readability firm. Diagnostic, semantic architecture, AI governance.
+* [gautierdorval.com](https://gautierdorval.com/) — Doctrine, canonical definitions, interpretive governance research.
+* [interpretive-governance.org](https://interpretive-governance.org/) — Formal versioned standard for interpretive governance.
 
 == Installation ==
 
+= Installing from WordPress =
+
+1. Go to Plugins > Add New in WordPress admin
+2. Search for "Bialty" or "Bulk Image Alt Text"
+3. Click "Install Now"
+4. Click "Activate"
+5. Open the "Bulk Image Alt Text" menu in the admin sidebar
+
 = Installing manually =
 
-1. Unzip all files to the `/wp-content/plugins/bulk-image-alt-text-with-yoast` directory
-2. Log into WordPress admin and activate the 'BIALTY - Bulk Image Alt Text (Alt tag, Alt Attribute) with Yoast SEO + WooCommerce' plugin through the 'Plugins' menu
-3. Go to "Settings > Bulk Image Alt Text" in the left-hand menu to start work on it.
+1. Download the plugin ZIP from this page
+2. Unzip it into `/wp-content/plugins/bulk-image-alt-text-with-yoast`
+3. Activate the plugin from the Plugins screen
+4. Open "Bulk Image Alt Text" in the admin sidebar
+
+= After activation =
+
+1. Select the post types Bialty should cover
+2. Choose the rule for missing alt text
+3. Choose the rule for existing alt text
+4. Save settings
+
+No bulk job is required. The selected rule applies on the next frontend page load.
 
 == Frequently Asked Questions ==
 
-= What is alt text? =
-Alt text (alternative text), also known as "alt attributes", “alt descriptions,” and technically incorrectly as "alt tags,” are used within an HTML code to describe the appearance and function of an image on a page.
+= What is Bialty? =
 
-= How to use Alt text: =
-• Adding alternative text to photos is first and foremost a principle of web accessibility. Visually impaired users using screen readers will be read an alt attribute to better understand an on-page image.
-• Alt tags will be displayed in place of an image if an image file cannot be loaded.
-• Alt tags provide better image context/descriptions to search engine crawlers, helping them to index an image properly.
-
-= Appropriate length? =
-Google seemed to count the first 16 words in the ALT tag and interestingly in the snippet Google uses, it does seem to completely cut off the rest of the ALT and from the 17th word. Having 16 words to work with might prove very useful if you are using ALT tags to describe more complex images. There is potentially plenty of available space to describe images properly for accessibility purposes AND SEO impact.
+Bialty is a WordPress plugin that adds image alt text dynamically to frontend HTML using existing WordPress SEO and editorial context.
 
 = How does Bialty work? =
 
-Bialty uses WordPress hooks and filters to modify image alt text in real-time when pages load. Unlike traditional bulk modification plugins, it doesn't make any permanent changes to your database or Media Library. This means you can safely test it on your website, and if you ever disable the plugin, everything returns to its original state.
+Bialty hooks into WordPress frontend rendering and modifies image alt attributes at render time. It does not rewrite Media Library metadata.
 
-= Will Bialty slow down my website? =
+= Does Bialty modify the Media Library? =
 
-No, Bialty is designed to be lightweight and efficient. Since it processes one page at a time as visitors load them, rather than modifying your entire database at once, there's no significant impact on server performance or page load times.
+No. Bialty does not modify the Media Library. Generated alt text is injected into rendered frontend HTML only.
 
-= Can Bialty handle large numbers of images? =
+= What happens if I disable Bialty? =
 
-Yes! Because Bialty processes images on-the-fly, it can handle any number of images without overloading your server. Whether you have 100 or 100,000 images, Bialty will process them efficiently as each page loads.
+The injected alt text disappears immediately because it was never stored in the database.
 
-= What types of images can Bialty modify? =
+= Does Bialty use AI image recognition? =
 
-Bialty works with images that appear in your post/page content and WooCommerce products, including featured images, product gallery images, and images within product descriptions or post content. Note that Bialty doesn't modify images in headers, footers, sidebars, or other areas outside standard WordPress content areas.
+No. Bialty does not analyze images visually and does not call any AI image API. It is a contextual rule engine.
 
-= Can I limit Bialty to work only on WooCommerce products? =
+= Does Bialty call an external API? =
 
-Yes! In the plugin settings, you can choose which post types Bialty should work with. You can enable it exclusively for WooCommerce products by unchecking other post types.
+No. Bialty does not rely on external AI or SaaS APIs.
 
-= What alt text options does Bialty offer? =
+= Does Bialty work with Yoast SEO, Rank Math, and AIOSEO? =
 
-Bialty provides several pre-defined options for alt text: use post/product title, use Yoast Focus Keyword, use image filename, or custom alt text (set per product/post). You can also choose whether to add alt text only where it's missing or replace all existing alt text.
+Yes. Bialty can use focus keyword or primary keyphrase data from Yoast SEO, Rank Math, and AIOSEO.
 
-= Do I need to run a bulk update process when I change settings? =
+= Does Bialty work without an SEO plugin? =
 
-No! When you change settings in Bialty, they take effect immediately for all pages as they load. There's no need to run any bulk update process or worry about server load.
+Yes. When no supported SEO plugin is active, Bialty can still use titles or cleaned image filenames.
 
-= What happens if I uninstall Bialty? =
+= Does Bialty work with WooCommerce? =
 
-Since Bialty doesn't modify your database, uninstalling it simply returns your alt text to its original state. This makes it completely safe to test on your live site.
-
-= Can I use custom phrases in my alt text? =
-
-Currently, Bialty uses predefined options for alt text. While you can set custom alt text for individual products/posts, automatic addition of custom phrases before or after the main alt text is not yet available. We're considering this feature for future releases.
+Yes, in Pro. WooCommerce coverage includes product pages and related WooCommerce scope documented on bialty.com.
 
 = Does Bialty work with page builders? =
 
-Yes, Bialty works with major page builders and WordPress themes. As long as the page builder uses standard WordPress methods to display content, Bialty will modify the alt text as expected.
+Yes, when the builder uses the standard WordPress frontend rendering flow. Documented builders include Gutenberg, Classic Editor, Elementor, and SiteOrigin.
 
-= What about multilingual websites? =
+= Why do I not see changes in the Media Library? =
 
-Bialty is compatible with multilingual websites and will apply alt text based on your settings regardless of the language. It works with popular translation plugins like WPML and Polylang.
+Because Bialty does not write generated alt text into Media Library metadata. Verify the rendered frontend HTML instead.
 
-= Will Bialty affect my SEO? =
+= Why do I not see changes in the editor? =
 
-Bialty can positively impact your SEO by ensuring all your images have relevant alt text. Since it can use your post titles or Yoast Focus Keywords, the alt text will be naturally optimized for your target keywords while remaining descriptive and useful.
+Because Bialty acts on frontend rendering, not on the editor interface.
 
-= How can I test if Bialty is working? =
+= How do I verify Bialty is active? =
 
-View your page source or inspect an image element, check the alt text before activating Bialty, enable Bialty with your desired settings, then refresh the page and check the alt text again. You should see your chosen alt text format applied to the images.
+Open the published page, clear cache, inspect the image in the browser, and read the rendered `alt` attribute.
 
-= My images don't seem to be updating. What should I check? =
+= Is the trial free? =
 
-If your images aren't updating, verify that you've selected the correct post types in Bialty settings, the images are within the main content area (not in widgets, headers, or custom sections), your theme uses standard WordPress methods to display content, and you're checking a fresh page load (not a cached version).
+No. The Pro trial is a 7-day paid trial. Payment is required at checkout.
+
+= What is the difference between Free and Pro? =
+
+Free covers posts and pages. Pro adds custom post types, WooCommerce scope, blacklist, Add Site Title, gallery controls, and broader rule coverage.
+
+= Will Bialty slow down my site? =
+
+Bialty is designed to remain lightweight because it does not run bulk rewrite jobs or external API calls. Actual impact depends on the site stack.
+
+= Can Bialty handle large sites? =
+
+Yes. Bialty does not depend on a one-time bulk rewrite process. It applies rules at render time on the requested page.
+
+= Can I override Bialty on a specific page or product? =
+
+Yes. Bialty supports manual override and per-content control.
+
+= Where can I find the full documentation? =
+
+The official documentation is available at [bialty.com](https://bialty.com/).
+
+= Who develops BIALTY? =
+
+BIALTY is developed by [Pagup](https://pagup.com/), a digital readability firm based in Quebec, Canada. Pagup specializes in semantic architecture, interpretive SEO, and AI governance.
+
+= Why do image alt texts matter for AI interpretation? =
+
+AI systems that crawl your site process both text and image metadata. When an image has no alt text or a generic one like "image1.jpg", the system loses context. It cannot determine whether the image supports the page's argument, illustrates a product, or is purely decorative. Over hundreds of pages, these gaps accumulate into what is known as [interpretive debt](https://pagup.com/en/glossary/interpretive-debt/) — a growing discrepancy between what your site actually contains and what systems understand about it.
+
+= What is digital readability? =
+
+Digital readability is the capacity of a website to be correctly understood by all four reading layers: humans, search engines, generative AI systems, and autonomous agents. Learn more at [pagup.com](https://pagup.com/en/glossary/digital-readability/).
 
 == Screenshots ==
 
-1. Bulk Image Alt Text Settings Page
-2. Bulk Image Alt Text Settings Page
+1. Bialty settings page — select post types and configure alt text rules
+2. Alt text rule configuration — choose what to do with missing and existing alt text
+3. Advanced options — WooCommerce settings, blacklist, site title, and gallery controls
+4. Guided setup — onboarding tour for first-time configuration
 
 == Changelog ==
 
-= 1.0.0 =
-* Initial release.
+= 2.2.3 =
+* Update Freemius SDK to 2.13.1.
 
-= 1.0.1 =
-* Fixed an error and translation issues.
-
-= 1.0.2 =
-* Added SEO recommendations and tools
-* Fixed text errors
-
-= 1.1.0 =
-* Added custom alt text option for individual posts, pages and woocommerce products
-* Disable BIALTY for individual posts, pages and woocommerce products
-* Add website title at the end of yoast focus keyword, post title or both.
-
-= 1.2.0 =
-* Added Support for Popular Page Builders (WPBakery Page Builder, Elementor, Site Origin, Divi...)
-* Added Support for Popular sliders (Revolution Slider, Layer Slider and other free sliders)
-* Improved code, fixed errors
-
-= 1.2.1 =
-* Fixed notices time upto 4 months after dismiss
-* Boost your ranking on Search engines with optimized robots.txt
-
-= 1.2.2 =
-* Fixed a major issue with cache plugins.
-* Code improvement
-
-= 1.2.4 =
-* Update Freemius SDK to latest release v2.3.0
-* Imroved code and fixed security
-* BIGTA recommedation notification
-* Updated all translations
-
-= 1.2.5 =
-* Fixed bug when post title start with a number, leave images broken
-
-= 1.2.6 =
-* Improved notifications
-
-= 1.2.7 =
-* VidSEO recommedation
-
-= 1.2.8 =
-* Changed textdomain to fix translation error in WordPress repo log.
-
-= 1.2.9 =
-* Improved text
-
-= 1.3.0 =
-* Improved code by using DOM to loop through all images
-* Use image name as ALT text for post, page and products (pro version)
-
-= 1.3.1 =
-* Fixed conflict issue with BuddyPress Profile Photo and Cover image upload
-* Fixed abruptly closing html and body tags issue
-* Fixed bialty dom loop unncessarly running on woocommerce
-* Fixed "Add site title" issue when post title option is selected
-
-= 1.3.2 =
-* Added new function for activate and clean buffering filter
-* Fixed buffering issue with clean output buffer
-* Output buffer to start if its on single post. page, product
-* Fixed upload conflict with WCFM - Frontend Manager
-
-= 1.3.3.1 =
-* Disabled output buffer for woocommerce checkout page to fix payment loading issue
-
-= 1.3.3.2 =
-* Fixed bug with custom alt keyword
-* Fixed some styling issues
-
-= 1.3.3.3 =
-* Fixed disable bialty issue on ninja forms
-* Added $bialty_img_found variable to fix issue with wp_blog_header file in some themes
-
-= 1.3.4 =
-* Fixed issue wtih Autoptimize (Upload option broken on buddypress profile when Bialty & Autoptimize are active)
-* Fixed issue with images inside Woocommerce Product Description
-
-= 1.4.0 =
-* 🐛 FIX: issues with Woocommerce cart, Autooptimize, Ninja Forms, BuddyPress and several other bugs
-* 👌 IMPROVE: Plugin Code with wordpress filter methods
-* 👌 IMPROVE: Updated freemius to latest version 2.3.2
-
-= 1.4.1 =
-* 🐛 FIX: issue with PHP DOMDocument flags. Added root div before $content filter
-* 📦 NEW: Added Focus Keyword feature for Rank Math SEO
-
-= 1.4.2 =
-* 🐛 FIX: issues with Astra Theme (Woocommerce Product Gallery images)
-* 👌 IMPROVE: Added 'bialty-container' class for div which wraps post content.
-
-= 1.4.2.1 =
-* 🔥 NEW: WP Google Street View promotion
-* 🐛 FIX: Some minor text issues
-
-= 1.4.3 =
-* 🐛 FIX: Issue with WooCommerce styling.
-* 🔥 Complete Code refactor. Better structure
-
-= 1.4.3.1 =
-* 🐛 FIX: Freemius Opt-in Issue.
-
-= 1.4.3.2 =
-* 🐛 FIX: Fixed disable Bialty issue on Single Post/Page/Product.
-* 👌 IMPROVE: Updated freemius to latest v2.4.0.1
-
-= 1.4.3.3 =
-* 👌 IMPROVE: Added NoticeController & View. Notice will only appear on plugin settings page
-
-= 1.4.3.4 =
-* 👌 IMPROVE: Updated freemius to v2.4.1
-
-= 1.4.3.5 =
-* 👌 IMPROVE: Tested up to WordPress v5.6
-* 🐛 FIX: Get Pro URL
-
-= 1.4.4 =
-* 👌 IMPROVE: Refactored code to MVC
-* 👌 IMPROVE: Many small improvements
-* 🐛 FIX: Issue with Woocommerce Gallery when Settings are disabled.
-
-= 1.4.4.1 =
-* 🐛 FIX: Request Issue with PHP v5.6
-* 🔥 NEW: Meta Tags for SEO promotion
-
-= 1.4.4.2 =
-* 👌 IMPROVE: Updated freemius to v2.4.2
-* 🐛 FIX: Capability bug causing PHP notices & warnings
-* 🐛 FIX: language domain
-
-= 1.4.4.4 =
-* 🐛 FIX: PHP notice for woocommerce gallery images
-* 🐛 FIX: Alt issue with Woocommerce gallery
-
-= 1.4.4.5 =
-* 🐛 FIX: Removed promo
-
-= 1.4.4.6 =
-* 👌 IMPROVE: Notifications for opt-in
-
-= 1.4.5.0 =
-* 🐛 FIX: Security Fix
-
-= 1.4.5.1 =
-* 🐛 FIX: Issue with wp-cli while indexing Yoast SEO
-* 🐛 FIX: Namespace issue with WP installation via composer
-
-= 1.4.6 =
-* 🐛 FIX: SECURITY PATCH. Verify nonce.
-* 👌 IMPROVE: Updated freemius to v2.5.3
-
-= 1.4.6.2 =
-* 🐛 FIX: PHP Fatal error for free version due to new files not properly uploaded via SVN
-
-= 1.4.7 =
-* 🐛 FIX: Issue with Beaver Builder
-* 👌 IMPROVE: Updated freemius to v2.5.8
-* 👌 IMPROVE: Disable Bialty on Homepage
-* 👌 IMPROVE: Disable Bialty on Certain posts by adding URL's to Blacklist (Pro)
-
-= 1.4.7.1 =
-* 🐛 FIX: Black List URLs issue (Pro version)
-
-= 1.4.7.2 =
+= 2.2.2 =
 * 🐛 FIX: Security issue
-* 🐛 FIX: Issue with getting post id from global $post
+* 👌 IMPROVE: Updated Freemius SDK to v2.13.0
 
-= 2.0.0 =
-* 👌 IMPROVE: Complete user interface revamp. Better experience with more features.
-* 👌 IMPROVE: Image size removed from image name for alt tag in-case thumbnail is used.
-* 👌 IMPROVE: Updated freemius to v2.6.2
+= 2.2.1 =
+* 🐛 FIX: PHP namespace resolution issue causing problems on specific servers
+* 👌 IMPROVE: Updated Freemius SDK to v2.12.0
 
-= 2.0.1 =
-* 🐛 FIX: 500 Internal Server Error while saving options (Pro version)
+= 2.2.0 =
+* 👌 IMPROVE: Frequently Asked Question (FAQ)
+* 🐛 FIX: Security issue
 
-= 2.0.2 =
-* 🐛 FIX: Post types option issue with free version.
-* 🐛 FIX: @$dom->loadHTML issue if content are returning empty string
-* 👌 IMPROVE: Updated freemius to v2.7.3
+= 2.1.1 =
+* 🐛 FIX: Posts fetch
 
 = 2.1.0 =
 * 🔥 NEW: Support for All in One SEO (AIOSEO)
@@ -364,17 +410,28 @@ If your images aren't updating, verify that you've selected the correct post typ
 * 👌 IMPROVE: Loading Blacklist posts via ajax search
 * 👌 IMPROVE: Updated freemius to v2.9.0
 
-= 2.1.1 =
-* 🐛 FIX: Posts fetch
+= 2.0.2 =
+* 🐛 FIX: Post types option issue with free version
+* 🐛 FIX: @$dom->loadHTML issue if content are returning empty string
+* 👌 IMPROVE: Updated freemius to v2.7.3
 
-= 2.2.0 =
-* 👌 IMPROVE: Frequently Asked Question (FAQ)
+= 2.0.1 =
+* 🐛 FIX: 500 Internal Server Error while saving options (Pro version)
+
+= 2.0.0 =
+* 👌 IMPROVE: Complete user interface revamp. Better experience with more features.
+* 👌 IMPROVE: Image size removed from image name for alt tag in-case thumbnail is used.
+* 👌 IMPROVE: Updated freemius to v2.6.2
+
+= 1.4.7.2 =
 * 🐛 FIX: Security issue
+* 🐛 FIX: Issue with getting post id from global $post
 
-= 2.2.1 = 
-* 🐛 FIX: PHP namespace resolution issue causing problems on specific servers
-* 👌 IMPROVE: Updated Freemius SDK to v2.12.0
+= 1.4.7.1 =
+* 🐛 FIX: Black List URLs issue (Pro version)
 
-= 2.2.2 = 
-* 🐛 FIX: Security issue
-* 👌 IMPROVE: Updated Freemius SDK to v2.13.0
+= 1.4.7 =
+* 🐛 FIX: Issue with Beaver Builder
+* 👌 IMPROVE: Updated freemius to v2.5.8
+* 👌 IMPROVE: Disable Bialty on Homepage
+* 👌 IMPROVE: Disable Bialty on Certain posts by adding URL's to Blacklist (Pro)
