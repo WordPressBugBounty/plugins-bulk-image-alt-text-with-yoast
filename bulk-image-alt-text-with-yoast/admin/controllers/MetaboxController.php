@@ -12,7 +12,7 @@ class MetaboxController {
             add_meta_box(
                 'bialty_post_options',
                 // id, used as the html id att
-                __( 'Bulk Image Alt Texts' ),
+                __( 'Bulk Image Alt Texts', 'bulk-image-alt-text-with-yoast' ),
                 // meta box title
                 array(&$this, 'metabox'),
                 // callback function, spits out the content
@@ -38,15 +38,21 @@ class MetaboxController {
         if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
             return false;
         }
-        if ( !current_user_can( 'edit_pages', $postid ) ) {
+        if ( empty( $postid ) ) {
             return false;
         }
-        if ( empty( $postid ) ) {
+        if (
+            !isset( $_POST['bialty_metabox_nonce'] )
+            || !wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['bialty_metabox_nonce'] ) ), 'bialty_metabox' )
+        ) {
+            return false;
+        }
+        if ( !current_user_can( 'edit_pages', $postid ) ) {
             return false;
         }
         $safe = array("use_bialty_alt_yes", "disable_bialty_yes");
         ( Request::safe( $_POST['use_bialty_alt'] ?? '', $safe ) ? update_post_meta( $postid, 'use_bialty_alt', true ) : delete_post_meta( $postid, 'use_bialty_alt' ) );
-        ( Request::check( 'bialty_cs_alt' ) ? update_post_meta( $postid, 'bialty_cs_alt', sanitize_text_field( $_POST['bialty_cs_alt'] ) ) : delete_post_meta( $postid, 'bialty_cs_alt' ) );
+        ( Request::check( 'bialty_cs_alt' ) ? update_post_meta( $postid, 'bialty_cs_alt', sanitize_text_field( wp_unslash( $_POST['bialty_cs_alt'] ) ) ) : delete_post_meta( $postid, 'bialty_cs_alt' ) );
         ( Request::safe( $_POST['disable_bialty'] ?? '', $safe ) ? update_post_meta( $postid, 'disable_bialty', true ) : delete_post_meta( $postid, 'disable_bialty' ) );
     }
 

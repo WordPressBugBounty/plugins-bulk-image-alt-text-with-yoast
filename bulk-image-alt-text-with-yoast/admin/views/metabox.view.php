@@ -1,4 +1,5 @@
 <div class="misc-pub-section misc-pub-section-last"><span id="timestamp">
+    <?php wp_nonce_field( 'bialty_metabox', 'bialty_metabox_nonce' ); ?>
     
     <p class="post-attributes-label-wrapper"><label class="post-attributes-label" for="bialty_text"><?php echo  esc_html__( 'Use Custom Alt Text for all images?*', "bulk-image-alt-text-with-yoast" ); ?></label></p>
 

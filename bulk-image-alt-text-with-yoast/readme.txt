@@ -5,7 +5,7 @@ Requires at least: 4.1
 Requires PHP: 7.4
 Tested up to: 7.0
 WC tested up to: 8.5
-Stable tag: 2.2.3
+Stable tag: 2.2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -385,6 +385,9 @@ Digital readability is the capacity of a website to be correctly understood by a
 4. Guided setup — onboarding tour for first-time configuration
 
 == Changelog ==
+
+= 2.2.4 =
+* Security hardening (metabox nonce) and admin UI maintenance.
 
 = 2.2.3 =
 * Update Freemius SDK to 2.13.1.
