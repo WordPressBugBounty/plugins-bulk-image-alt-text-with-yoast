@@ -5,11 +5,11 @@ Requires at least: 4.1
 Requires PHP: 7.4
 Tested up to: 7.0
 WC tested up to: 8.5
-Stable tag: 2.2.4
+Stable tag: 2.2.5
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Automatic alt text for WordPress and WooCommerce. Dynamic, reversible, and based on your existing SEO context from Yoast, Rank Math, or AIOSEO.
+Automatic alt text for WordPress and WooCommerce. Dynamic, reversible, and based on your existing SEO context from Yoast, Rank Math, SEOPress, or AIOSEO.
 
 == Description ==
 
@@ -27,7 +27,7 @@ Bialty is designed for site owners who want broad alt text coverage without dest
 - **How it works:** injects alt text at render time in frontend HTML
 - **What it does not do:** does not rewrite Media Library metadata
 - **Rule sources:** focus keyword, title, image filename, combined modes, manual override
-- **SEO plugin support:** Yoast SEO, Rank Math, All in One SEO
+- **SEO plugin support:** Yoast SEO, Rank Math, SEOPress, All in One SEO
 - **WooCommerce support:** available in Pro
 - **AI image analysis:** not included
 - **External API calls:** none
@@ -41,6 +41,7 @@ Depending on your settings and plan, Bialty can use:
 
 - Focus keyword from Yoast SEO
 - Focus keyword from Rank Math
+- Target keyword from SEOPress
 - Primary keyphrase from All in One SEO (AIOSEO)
 - Post title
 - Product title
@@ -100,6 +101,7 @@ Supported integrations:
 
 - **Yoast SEO** — reads the focus keyword field
 - **Rank Math** — reads the focus keyword field
+- **SEOPress** — reads the target keyword field
 - **All in One SEO (AIOSEO)** — reads the primary keyphrase
 
 If no supported SEO plugin is active, Bialty can still use titles or image filenames as the alt text source.
@@ -313,9 +315,9 @@ No. Bialty does not analyze images visually and does not call any AI image API. 
 
 No. Bialty does not rely on external AI or SaaS APIs.
 
-= Does Bialty work with Yoast SEO, Rank Math, and AIOSEO? =
+= Does Bialty work with Yoast SEO, Rank Math, SEOPress, and AIOSEO? =
 
-Yes. Bialty can use focus keyword or primary keyphrase data from Yoast SEO, Rank Math, and AIOSEO.
+Yes. Bialty can use focus keyword, target keyword, or primary keyphrase data from Yoast SEO, Rank Math, SEOPress, and AIOSEO.
 
 = Does Bialty work without an SEO plugin? =
 
@@ -385,6 +387,9 @@ Digital readability is the capacity of a website to be correctly understood by a
 4. Guided setup — onboarding tour for first-time configuration
 
 == Changelog ==
+
+= 2.2.5 =
+* Add SEOPress focus keyword support for generated image alt text.
 
 = 2.2.4 =
 * Security hardening (metabox nonce) and admin UI maintenance.

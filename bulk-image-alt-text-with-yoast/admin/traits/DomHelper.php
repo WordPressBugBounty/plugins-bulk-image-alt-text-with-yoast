@@ -154,7 +154,7 @@ trait DomHelper {
     }
 
     /**
-     * Retrieves the focus keyword for the current post/page using Yoast SEO, Rank Math or All in One SEO.
+     * Retrieves the focus keyword for the current post/page using Yoast SEO, Rank Math, SEOPress or All in One SEO.
      *
      * @return string The focus keyword for the current post/page.
      */
@@ -176,6 +176,13 @@ trait DomHelper {
     
             // define focus keyword for Rank Math
             $focus_keyword = get_post_meta( $post_id, 'rank_math_focus_keyword', true );
+
+        }
+
+        elseif ( defined('SEOPRESS_VERSION') || function_exists('seopress_get_service') ) {
+
+            // define focus keyword for SEOPress
+            $focus_keyword = get_post_meta( $post_id, '_seopress_analysis_target_kw', true );
 
         }
 
