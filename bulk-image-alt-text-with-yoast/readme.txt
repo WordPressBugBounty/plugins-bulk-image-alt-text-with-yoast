@@ -4,8 +4,8 @@ Tags: Alt Text, Alt Attribute, Alt tag, Google images, SEO
 Requires at least: 4.1
 Requires PHP: 7.4
 Tested up to: 7.0
-WC tested up to: 8.5
-Stable tag: 2.2.5
+WC tested up to: 10.9.4
+Stable tag: 2.2.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -386,7 +386,16 @@ Digital readability is the capacity of a website to be correctly understood by a
 3. Advanced options — WooCommerce settings, blacklist, site title, and gallery controls
 4. Guided setup — onboarding tour for first-time configuration
 
+== Upgrade Notice ==
+
+= 2.2.6 =
+Recommended for all WooCommerce users: BIALTY no longer touches Cart, Checkout or My Account markup.
+
 == Changelog ==
+
+= 2.2.6 =
+* Fix: BIALTY no longer processes the WooCommerce Cart, Checkout and My Account pages. Their markup is now left byte-for-byte unchanged, which prevents DOMDocument parser notices on the transactional forms.
+* Fix: empty content (for example a post with no featured image) is now returned unchanged instead of being rewritten, removing a stray newline and related log noise.
 
 = 2.2.5 =
 * Add SEOPress focus keyword support for generated image alt text.

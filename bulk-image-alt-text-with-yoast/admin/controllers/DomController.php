@@ -30,7 +30,22 @@ class DomController {
         );
     }
 
+	/**
+	 * Determine whether the current request is a WooCommerce transactional screen.
+	 *
+	 * @return bool True for checkout, cart, or account requests.
+	 */
+	private function bialty_is_transactional_context() {
+		return ( function_exists( 'is_checkout' ) && is_checkout() )
+			|| ( function_exists( 'is_cart' ) && is_cart() )
+			|| ( function_exists( 'is_account_page' ) && is_account_page() );
+	}
+
     public function bialty( $content ) {
+		if ( empty( $content ) || $this->bialty_is_transactional_context() ) {
+			return $content;
+		}
+
         // global $post;
         // Disable Bialty on Homepage if option is enabled
         if ( Option::check( 'disable_home' ) && (is_front_page() || is_home()) ) {
