@@ -7,6 +7,8 @@ use \Pagup\Bialty\Controllers\MetaboxController;
 use \Pagup\Bialty\Controllers\OptionsController;
 use \Pagup\Bialty\Controllers\SettingsController;
 
+require_once __DIR__ . '/AgentControl.php';
+
 //require \Pagup\Bialty\Core\Plugin::path('vendor/persist-admin-notices-dismissal/persist-admin-notices-dismissal.php');
 
 class Settings {
@@ -33,6 +35,7 @@ class Settings {
         // Add setting link to plugin page
         $plugin_base = BIALTY_PLUGIN_BASE;
         add_filter( "plugin_action_links_{$plugin_base}", array( &$this, 'setting_link' ) );
+        add_filter( 'plugin_row_meta', array( &$this, 'plugin_row_meta' ), 10, 2 );
 
         // Add styles and scripts
         add_action( 'admin_enqueue_scripts', array( &$this, 'assets') );
@@ -47,6 +50,30 @@ class Settings {
     public function setting_link( $links ) {
 
         array_unshift( $links, '<a href="admin.php?page=bialty">Settings</a>' );
+        return $links;
+    }
+
+    /**
+     * Add a discreet Pagup ecosystem link to this plugin's row.
+     */
+    public function plugin_row_meta( $links, $file ) {
+        if ( $file !== BIALTY_PLUGIN_BASE ) {
+            return $links;
+        }
+
+        $attributes = AgentControl::is_active()
+            ? ''
+            : ' target="_blank" rel="noopener noreferrer"';
+        list( $ecosystem_label, $agent_control_label ) = AgentControl::row_meta_labels();
+
+        $links[] = sprintf(
+            '<span>%1$s · <a href="%2$s"%3$s>%4$s</a></span>',
+            esc_html( $ecosystem_label ),
+            esc_url( AgentControl::url() ),
+            $attributes,
+            esc_html( $agent_control_label )
+        );
+
         return $links;
     }
 

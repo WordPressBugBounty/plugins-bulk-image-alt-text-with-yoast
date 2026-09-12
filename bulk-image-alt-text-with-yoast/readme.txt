@@ -5,7 +5,7 @@ Requires at least: 4.1
 Requires PHP: 7.4
 Tested up to: 7.0
 WC tested up to: 10.9.4
-Stable tag: 2.2.6
+Stable tag: 2.2.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -228,13 +228,15 @@ Bialty is best understood as a scalable rule-based automation layer, not as a re
 
 = Languages =
 
-Bialty is translated into 6 languages:
+Bialty is translated into 8 languages:
 
 - English
 - French
 - Spanish
 - Portuguese
 - German
+- Italian
+- Dutch
 - Russian
 
 = Links =
@@ -310,6 +312,10 @@ The injected alt text disappears immediately because it was never stored in the 
 = Does Bialty use AI image recognition? =
 
 No. Bialty does not analyze images visually and does not call any AI image API. It is a contextual rule engine.
+
+= Can I use Claude Code or Codex with this WordPress site? =
+
+This plugin does not grant AI agents access to WordPress. PAGUP Agent Control is a separate product designed to give compatible AI agents a dedicated WordPress identity with explicit permissions. It can support read-only SXO reviews, content-refresh planning and controlled draft improvements. It does not replace BIALTY, analyze images or expose BIALTY settings to AI agents.
 
 = Does Bialty call an external API? =
 
@@ -388,10 +394,18 @@ Digital readability is the capacity of a website to be correctly understood by a
 
 == Upgrade Notice ==
 
+= 2.2.7 =
+Updates the bundled Freemius SDK and adds localized Agent Control task examples without changing BIALTY's deterministic alt-text model.
+
 = 2.2.6 =
 Recommended for all WooCommerce users: BIALTY no longer touches Cart, Checkout or My Account markup.
 
 == Changelog ==
+
+= 2.2.7 =
+* Updated the bundled Freemius WordPress SDK from 2.13.1 to 2.13.4 for current pricing, payment-history currency, API-timeout, PHP compatibility, and add-on checkout behavior.
+* Added contextual PAGUP Agent Control examples for controlled WordPress audits and draft workflows without changing BIALTY's deterministic alt-text model.
+* Updated the 8 bundled admin locales for the new interface strings.
 
 = 2.2.6 =
 * Fix: BIALTY no longer processes the WooCommerce Cart, Checkout and My Account pages. Their markup is now left byte-for-byte unchanged, which prevents DOMDocument parser notices on the transactional forms.

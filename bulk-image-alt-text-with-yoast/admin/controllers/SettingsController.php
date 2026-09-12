@@ -2,6 +2,7 @@
 
 namespace Pagup\Bialty\Controllers;
 
+use Pagup\Bialty\AgentControl;
 use Pagup\Bialty\Core\Option;
 use Pagup\Bialty\Core\Plugin;
 use Pagup\Bialty\Core\Request;
@@ -48,6 +49,10 @@ class SettingsController {
             'nonce'            => wp_create_nonce( 'bialty_nonce' ),
             'purchase_url'     => bialty_fs()->get_upgrade_url(),
             'recommendations'  => $this->recommendations_list(),
+            'agent_control'    => array(
+                'active' => AgentControl::is_active(),
+                'url'    => AgentControl::url(),
+            ),
         ) );
         if ( BIALTY_PLUGIN_MODE !== "production" ) {
             echo $this->devNotification();
