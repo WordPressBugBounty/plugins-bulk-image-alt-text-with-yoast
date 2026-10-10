@@ -82,6 +82,10 @@ class Settings {
         Asset::style('bialty_metabox', 'admin/assets/metabox.css');
 
         if ( isset($_GET['page']) && !empty($_GET['page']) && $_GET['page'] === "bialty" ) {
+            // Freemius renders onboarding without the settings app or its localized data.
+            if ( bialty_fs()->is_activation_mode() ) {
+                return;
+            }
 
             if (BIALTY_PLUGIN_MODE === "production") {
             
@@ -149,6 +153,10 @@ class Settings {
             echo '<style>
                 #message, .update-nag, .notice, .notice-success, .notice-error, .notice-warning, .notice-info {
                     display: none !important;
+                }
+                /* The full product name must remain readable on narrow screens. */
+                #fs_connect .fs-permissions nobr {
+                    white-space: normal;
                 }
             </style>';
         }

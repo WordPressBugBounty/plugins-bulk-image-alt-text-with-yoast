@@ -3,9 +3,9 @@ Contributors: the-rock, pagup, freemius
 Tags: Alt Text, Alt Attribute, Alt tag, Google images, SEO
 Requires at least: 4.1
 Requires PHP: 7.4
-Tested up to: 7.0
+Tested up to: 7.1
 WC tested up to: 10.9.4
-Stable tag: 2.2.7
+Stable tag: 2.2.8
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -401,6 +401,11 @@ Updates the bundled Freemius SDK and adds localized Agent Control task examples 
 Recommended for all WooCommerce users: BIALTY no longer touches Cart, Checkout or My Account markup.
 
 == Changelog ==
+
+= 2.2.8 =
+* Updated Freemius SDK to the latest version
+* Load the settings application after the Freemius onboarding screen.
+* Keep the full product name readable on mobile onboarding screens.
 
 = 2.2.7 =
 * Updated the bundled Freemius WordPress SDK from 2.13.1 to 2.13.4 for current pricing, payment-history currency, API-timeout, PHP compatibility, and add-on checkout behavior.
