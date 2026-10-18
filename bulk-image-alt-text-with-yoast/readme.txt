@@ -5,7 +5,7 @@ Requires at least: 4.1
 Requires PHP: 7.4
 Tested up to: 7.1
 WC tested up to: 10.9.4
-Stable tag: 2.2.8
+Stable tag: 2.2.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -401,6 +401,11 @@ Updates the bundled Freemius SDK and adds localized Agent Control task examples 
 Recommended for all WooCommerce users: BIALTY no longer touches Cart, Checkout or My Account markup.
 
 == Changelog ==
+
+= 2.2.9 =
+* Added an optional Fy2Press discovery card after the plugin settings, with local images and direct links without tracking.
+* Remember dismissal per user and site across participating PAGUP plugins; hide the card when Fy2Press is installed.
+
 
 = 2.2.8 =
 * Updated Freemius SDK to the latest version

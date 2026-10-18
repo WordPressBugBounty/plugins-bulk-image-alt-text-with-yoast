@@ -5,7 +5,7 @@
 * Plugin URI: https://better-robots.com/product/plugin-bialty-woocommerce-pro/
 * Description: Auto-add Alt texts, also called Alt Tags or Alt Attributes, from YOAST SEO Focus Keyword field (or page/post/product title) with your page/post/product title, to all images contained on your pages, posts, products, portfolios for better Google Ranking on search engines – Fully compatible with Woocommerce
 * Author: Pagup
-* Version: 2.2.8
+* Version: 2.2.9
 * Author URI: https://pagup.com/
 * Text Domain: bulk-image-alt-text-with-yoast
 * Domain Path: /languages/
@@ -13,6 +13,9 @@
 if ( !defined( 'ABSPATH' ) ) {
     exit;
 }
+// Local discovery card; no network calls or telemetry.
+require_once __DIR__ . '/admin/Fy2PressDiscovery.php';
+Pagup_Fy2Press_Discovery_V1::register( 'bialty', 'content', __FILE__, '' );
 if ( function_exists( 'bialty_fs' ) ) {
     bialty_fs()->set_basename( false, __FILE__ );
 } else {
