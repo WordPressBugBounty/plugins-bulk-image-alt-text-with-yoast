@@ -4,6 +4,40 @@ namespace Pagup\Bialty\Controllers;
 
 use Pagup\Bialty\Core\Option;
 use Pagup\Bialty\Traits\DomHelper;
+/**
+ * Image tag as DomHelper expects it (getAttribute/setAttribute), backed by the
+ * WP_HTML_Tag_Processor positioned on that tag. Only the attribute is edited,
+ * in place: nothing else in the markup is parsed again or serialized again.
+ */
+final class DomImageTag {
+    private $processor;
+
+    private $updated = array();
+
+    public function __construct( $processor ) {
+        $this->processor = $processor;
+    }
+
+    /**
+     * Like DOMElement::getAttribute(): a missing attribute, or one without a value, reads as an empty string.
+     */
+    public function getAttribute( $name ) {
+        if ( isset( $this->updated[$name] ) ) {
+            return $this->updated[$name];
+        }
+        $value = $this->processor->get_attribute( $name );
+        return ( is_string( $value ) ? $value : '' );
+    }
+
+    public function setAttribute( $name, $value ) {
+        $value = (string) $value;
+        if ( $this->processor->set_attribute( $name, $value ) ) {
+            $this->updated[$name] = $value;
+        }
+    }
+
+}
+
 class DomController {
     use DomHelper;
     public function __construct() {
@@ -61,25 +95,16 @@ class DomController {
         if ( isset( $_GET['fl_builder'] ) ) {
             return $content;
         }
-        $dom = new \DOMDocument('1.0', 'UTF-8');
-        if ( Option::check( 'debug_mode' ) ) {
-            if ( !empty( $content ) ) {
-                @$dom->loadHTML( mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' ), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
-            } else {
-                // Handle the case where $content is empty
-                error_log( 'Error: $content is empty in debug mode' );
-            }
-        } else {
-            if ( !empty( $content ) ) {
-                @$dom->loadHTML( mb_convert_encoding( "<div class='bialty-container'>{$content}</div>", 'HTML-ENTITIES', 'UTF-8' ), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
-            } else {
-                // Handle the case where $content is empty
-                error_log( 'Error: $content is empty' );
-            }
+        // Alt attributes are edited in place with the WordPress HTML API (WordPress 6.2+).
+        // Without it, or when the filtered value is not a string, the content is returned as received.
+        if ( !is_string( $content ) || !class_exists( 'WP_HTML_Tag_Processor' ) ) {
+            return $content;
         }
         $post_types = ( Option::check( 'post_types' ) ? array_intersect( Option::get( 'post_types' ), ['post', 'page'] ) : ['post', 'page'] );
-        $html = new \DOMXPath($dom);
-        foreach ( $html->query( "//img" ) as $node ) {
+        $html = new \WP_HTML_Tag_Processor($content);
+        // Upper case: WordPress 6.2.0 matches a lower-case query against lower-case tags only.
+        while ( $html->next_tag( 'IMG' ) ) {
+            $node = new DomImageTag($html);
             // Return image URL
             $img_url = $node->getAttribute( "src" );
             // Set alt for Post & Pages
@@ -102,16 +127,29 @@ class DomController {
         // Set alt for Post/Pages
         if ( is_singular( $post_types ) ) {
             if ( empty( Option::post_meta( 'disable_bialty' ) ) ) {
-                $content = $dom->saveHtml();
+                $content = $this->bialty_container( $html->get_updated_html() );
             }
         }
         return $content;
     }
 
+	/**
+	 * Wrap processed markup in the container the plugin has always output around it.
+	 *
+	 * The container used to be a by-product of the former libxml round trip. It is kept byte for byte,
+	 * so themes and stylesheets still find the same element. Debug mode never had it.
+	 *
+	 * @param string $html Markup whose alt attributes were processed.
+	 * @return string
+	 */
+	private function bialty_container( $html ) {
+		if ( Option::check( 'debug_mode' ) ) {
+			return $html;
+		}
+		return '<div class="bialty-container">' . $html . "</div>\n";
+	}
+
     public function bialty_woocommerce_gallery( $content ) {
-        $dom = new \DOMDocument('1.0', 'UTF-8');
-        @$dom->loadHTML( mb_convert_encoding( $content, 'HTML-ENTITIES', 'UTF-8' ), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
-        $html = new \DOMXPath($dom);
         return $content;
     }
 
@@ -142,39 +180,6 @@ class DomController {
             $html = ob_get_clean();
             echo $html;
             return;
-            $dom = new \DOMDocument('1.0', 'UTF-8');
-            if ( Option::check( 'debug_mode' ) ) {
-                @$dom->loadHTML( mb_convert_encoding( $html, 'HTML-ENTITIES', 'UTF-8' ), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
-            } else {
-                @$dom->loadHTML( mb_convert_encoding( "<div class='bialty-container'>{$html}</div>", 'HTML-ENTITIES', 'UTF-8' ), LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD );
-            }
-            $xpath = new \DOMXPath($dom);
-            // Find all product sections
-            $products = $xpath->query( "//section[contains(@class, 'product')]" );
-            foreach ( $products as $product ) {
-                // Get product ID from the data attribute
-                $product_id = $product->getAttribute( 'data-product_id' );
-                // Get product title
-                $product_title = get_the_title( $product_id );
-                // Find images within this product section
-                $images = $xpath->query( ".//img", $product );
-                foreach ( $images as $node ) {
-                    $img_url = $node->getAttribute( "src" );
-                    if ( empty( $node->getAttribute( 'alt' ) ) ) {
-                        if ( Option::check( 'woo_alt_empty' ) ) {
-                            // Override the alt tag with this product's title
-                            $node->setAttribute( "alt", $product_title . $this->site_title() );
-                        }
-                    } else {
-                        if ( Option::check( 'woo_alt_not_empty' ) ) {
-                            // Override existing alt tag with this product's title
-                            $node->setAttribute( "alt", $product_title . $this->site_title() );
-                        }
-                    }
-                }
-            }
-            echo $dom->saveHTML();
-            unset($GLOBALS['bialty_in_related']);
         }
     }
 

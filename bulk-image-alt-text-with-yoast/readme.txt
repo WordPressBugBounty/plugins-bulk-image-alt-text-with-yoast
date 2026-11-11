@@ -5,7 +5,7 @@ Requires at least: 4.1
 Requires PHP: 7.4
 Tested up to: 7.1
 WC tested up to: 10.9.4
-Stable tag: 2.2.9
+Stable tag: 2.2.10
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -394,6 +394,9 @@ Digital readability is the capacity of a website to be correctly understood by a
 
 == Upgrade Notice ==
 
+= 2.2.10 =
+Recommended security hardening for all users: BIALTY now edits only the alt attribute of images and no longer rewrites the rest of your content markup. Alt text rules now require WordPress 6.2 or later.
+
 = 2.2.7 =
 Updates the bundled Freemius SDK and adds localized Agent Control task examples without changing BIALTY's deterministic alt-text model.
 
@@ -401,6 +404,9 @@ Updates the bundled Freemius SDK and adds localized Agent Control task examples 
 Recommended for all WooCommerce users: BIALTY no longer touches Cart, Checkout or My Account markup.
 
 == Changelog ==
+
+= 2.2.10 =
+* Security hardening: BIALTY now edits only the alt attribute of each image, and the rest of your content markup is no longer rewritten. Alt text rules now require WordPress 6.2 or later; on older WordPress versions BIALTY leaves pages unchanged and adds no alt text.
 
 = 2.2.9 =
 * Added an optional Fy2Press discovery card after the plugin settings, with local images and direct links without tracking.
